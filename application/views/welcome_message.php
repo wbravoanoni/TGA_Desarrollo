@@ -93,10 +93,10 @@
 <?php
     // Conectarse a y seleccionar una base de datos de MySQL llamada sakila
 // Nombre de host: 127.0.0.1, nombre de usuario: tu_usuario, contraseña: tu_contraseña, bd: sakila
-$mysqli = new mysqli('desarrollo.cusc3ayieifn.us-west-1.rds.amazonaws.com', 'dev_wbravo', 'YDwd6=Za#g', 'db_wbravo',3306);
+//$mysqli = new mysqli('desarrollo.cusc3ayieifn.us-west-1.rds.amazonaws.com', 'dev_wbravo', 'YDwd6=Za#g', 'db_wbravo',3306);
 
 // ¡Oh, no! Existe un error 'connect_errno', fallando así el intento de conexión
-if ($mysqli->connect_errno) {
+/*if ($mysqli->connect_errno) {
     // La conexión falló. ¿Que vamos a hacer? 
     // Se podría contactar con uno mismo (¿email?), registrar el error, mostrar una bonita página, etc.
     // No se debe revelar información delicada
@@ -113,7 +113,7 @@ if ($mysqli->connect_errno) {
     // Podría ser conveniente mostrar algo interesante, aunque nosotros simplemente saldremos
     exit;
 }
-
+*/
 ?>
 <div class="container">
     <div class="row">
@@ -122,9 +122,9 @@ if ($mysqli->connect_errno) {
             <div class="account-wall">
                 <img class="profile-img" draggable="false" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
                     alt="">
-                <form class="form-signin">
-                <input type="text" class="form-control" placeholder="Email" required autofocus>
-                <input type="password" class="form-control" placeholder="Password" required>
+                <form class="form-signin"  action="<?php echo base_url()?>Welcome_controller/existeUsuarioController" method="POST">
+                <input type="text" name="email" class="form-control" placeholder="Email" required autofocus>
+                <input type="password" name="password" class="form-control" placeholder="Password" required>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">
                     Sign in</button>
                 <label class="checkbox pull-left">
