@@ -1,0 +1,38 @@
+-- selecione los ultimos 5 registros ingresados al sistema de la tabla users
+-- los registros deben ser ordenados desde la fecha mas actual
+
+select*from users order by fechaIngreso desc limit 5
+
+
+-- selecciona los usuarios mayores a 30 años (muestra el nombre y apellido en una columna llamada "usuario" y la edad, ordenenlo por nombre)
+
+SELECT CONCAT_WS(" ",nombre,apellido) AS usuario,edad
+FROM users 
+WHERE edad>30 
+ORDER BY usuario ASC
+
+-- SEELCCIONE LOS CORREOS HOTMAIL y que el usuario tenga mas de 35 años
+
+SELECT*FROM users where correo like '%hotmail.com' and edad>35;
+
+-- inserta un nuevo registro
+
+insert into users(nombre,apellido,correo,edad,fechaIngreso)
+values(10,"Winston","Bravo","wbravo@tga.cl",26,"2018-03-07");
+
+-- mostrar personas que sean de venezuela y que tengan mas de 30 años(mostrar enl aconsulta nombre,el nombre del pais y la edad)
+
+select a.nombre,a.edad,b.nombrePais
+from users a
+inner join paises b on a.idPais=b.idPais
+
+-- mostrar usuarios ingresados en el año 2018 entre el 5 y 8 de marzo
+
+select*from users a where a.fechaIngreso >='2018-03-05' and a.fechaIngreso <='2018-03-0'
+
+-- mostrar los paises que no tienen usuarios
+
+select b.nombrePais from users a
+right join paises b on a.idPais=b.idPais
+where a.idPais is null 
+
