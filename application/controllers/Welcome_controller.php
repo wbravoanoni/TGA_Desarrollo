@@ -36,17 +36,36 @@ class Welcome_controller extends CI_Controller {
 				
 		$valor=$this->Welcome_model->existeUsuarioModel($data);
 
-			if($valor===true){
+			if(!$valor==false){
+				session_start();
+				$_SESSION['nombre']  = $valor;
 				redirect("Welcome_controller/Home");
 			}else{
-				echo "El usuario no existe";
+
+			redirect(base_url()."?error=1");
+
 			}
 	}
 
 	public function Home(){
-				$this->load->view("layout/head.php");
-				$this->load->view("layout/navbar.php");	
-				$this->load->view("home_view.php");
-				$this->load->view("layout/footer.php");
+
+		if(isset($_SESSION['nombre'])){
+		$dato["nombre"]=$_SESSION['nombre'];
+
+		$this->load->view("layout/head.php");
+		$this->load->view("layout/navbar.php",$dato);	
+		$this->load->view("home_view.php");
+		$this->load->view("layout/footer.php");	
+		}else{
+			exit;
+		}
+
 	}
+
+
+	public function logout()
+		{
+			$this->session->sess_destroy();
+			redirect(base_url());	
+		}
 }

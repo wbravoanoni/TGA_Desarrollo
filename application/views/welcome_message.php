@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
@@ -136,10 +136,25 @@
             </div>
             <a href="#" class="text-center new-account">Create an account </a>
         </div>
+
     </div>
+
+<div class="col-lg-4 col-lg-offset-4">
+<?php
+if(isset($_GET["error"])){
+if($_GET["error"]==1){?>
+
+<div class="alert alert-danger" role="alert">
+<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+<span class="sr-only">Error:</span>
+El usuario no existe
 </div>
 
-  
+<?php}}?>
+</div>
+
+</div>
+
 </body>
 </html>
 

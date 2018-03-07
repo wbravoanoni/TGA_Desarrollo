@@ -24,14 +24,21 @@ class Welcome_model extends CI_MODEL {
 				$email    = $data["email"];
 				$password = $data["password"];
 
-$resultado=$this->db->query("SELECT correo,contrasena 
+$resultado=$this->db->query("SELECT 
+							CONCAT_WS(' ',nombre,apellido) as nombre,correo,contrasena 
 							 FROM app_user 
 							 WHERE correo='".$email ."' 
 							 AND contrasena='".$password."' 
 				 			");
 
+
+
 			if($resultado->num_rows()>0){
-				return true;
+					foreach ($resultado->result() as $row)
+					{
+					$resultado= $row->nombre;
+					}
+				return $resultado;
 			}else{
 				return false;
 			}
